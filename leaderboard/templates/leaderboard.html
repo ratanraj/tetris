@@ -85,18 +85,25 @@
                             <th>Rank</th>
                             <th>Username</th>
                             <th>Echo</th>
-                            <th>Sudoku</th>
                             <th>Anagrams</th>
+                            <th>ColorFill</th>
+                            <th>MakeDir</th>
                             <th>Maze</th>
+                            <th>Puzzle3</th>
+                            <th>Puzzle4</th>
+
                             <th>Total</th>
                         </tr>
                         <tr id="userscore" class="info">
                             <td v-text="score.rank"></td>
                             <td v-text="score.user_name"></td>
                             <td v-text="score.programs.Echo.score"></td>
-                            <td v-text="score.programs.sudoku.score"></td>
-                            <td v-text="score.programs.anagrams.score"></td>
-                            <td v-text="score.programs.maze.score"></td>
+                            <td v-text="score.programs.Anagrams.score"></td>
+                            <td v-text="score.programs.ColorFill.score"></td>
+                            <td v-text="score.programs.MakeDir.score"></td>
+                            <td v-text="programs.Maze.score"></td>
+                            <td v-text="programs.Puzzle3.score"></td>
+                            <td v-text="programs.Puzzle4.score"></td>
                             <td v-text="score.total"></td>
                         </tr>
                         <tr v-repeat="users | filterBy searchText in user_name | orderBy 'total' -1">
