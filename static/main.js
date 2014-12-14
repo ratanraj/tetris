@@ -1,4 +1,27 @@
 $(function(){
+  var navigation = new Vue({
+    el: '#navigation',
+    created: function(){
+      this.homePage();
+    },
+    methods: {
+      hideAll: function(){
+        $("#main-container .page").hide();
+      },
+      homePage: function(){
+        this.hideAll();
+        $("#homePage").show();
+      },
+      submissionsPage: function(){
+        this.hideAll();
+        $("#submissionsPage").show();
+      },
+      leaderBoardPage: function(){
+        this.hideAll();
+        $("#leaderBoardPage").show();
+      }
+    }
+  });
   var submissions = new Vue({
     el:'#submissions',
     data: {
@@ -37,7 +60,7 @@ $(function(){
       },
       created: function(){
         this.fetchData()
-        this.$watch('users', function(){
+        this.$watch('score', function(){
             this.fetchData()
         })
       },
@@ -46,7 +69,6 @@ $(function(){
             var self=this;
             $.getJSON("/userscore",function(data){
                 self.score=data;
-                console.log(data);
             });
         }
       }
@@ -71,5 +93,14 @@ $(function(){
         }
       }
   });
+
+  if(window.location.hash=='#home') {
+    navigation.homePage()
+  }else if(window.location.hash=='#submissions') {
+    navigation.submissionsPage()
+  }else if(window.location.hash=='#leaderboard') {
+    navigation.leaderBoardPage()
+  }
 });
+
 

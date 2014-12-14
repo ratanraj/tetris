@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from tetris.settings import DB_HOST
 from django.http import HttpResponse, HttpResponseRedirect
 from pymongo import MongoClient
 import json
@@ -11,7 +12,8 @@ def leaderboard(request):
     return render(request, 'leaderboard.html', {'username':request.user.username})
 
 def scores(request):
-    client=MongoClient('mongodb://autotest:AvisoAutoTest@ec2-54-196-94-94.compute-1.amazonaws.com/autotest')
+    print DB_HOST
+    client=MongoClient(DB_HOST)
     scores = client['autotest']['scores'].find()
     data=[]
     for score in scores:
@@ -27,7 +29,7 @@ def scores(request):
 
 @login_required(login_url='/accounts/login/')
 def userscore(request):
-    client=MongoClient('mongodb://autotest:AvisoAutoTest@ec2-54-196-94-94.compute-1.amazonaws.com/autotest')
+    client=MongoClient(DB_HOST)
     score = client['autotest']['scores'].find_one({'user_name':request.user.username})
     del score['_id']
     total=0
@@ -53,7 +55,7 @@ def userscore(request):
 
 @login_required(login_url='/accounts/login/')
 def submissions(request):
-    client=MongoClient('mongodb://autotest:AvisoAutoTest@ec2-54-196-94-94.compute-1.amazonaws.com/autotest')
+    client=MongoClient(DB_HOST)
     user_name = request.user.username
     submissions = client['autotest']['submissions'].find({'user_name':user_name})
     data=[]
@@ -64,3 +66,4 @@ def submissions(request):
 
 def redirectview(request):
     return HttpResponseRedirect('/leaderboard')
+
