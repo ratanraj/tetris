@@ -37,7 +37,8 @@ $(function(){
         fetchData: function() {
             var self=this;
             $.getJSON("/submissions",function(data){
-                //self.submissions=data;
+                self.submissions=data;
+                /*
                 var progs = {}; 
                 for(var i=0;i<data.length; i++) {
                     if(progs[data[i]['program']]==null) {
@@ -49,6 +50,7 @@ $(function(){
                 var _submissions = [];
                 for(var i in progs) { _submissions.push(progs[i]) }
                 self.submissions=_submissions;
+                */
             });
         }
       }
