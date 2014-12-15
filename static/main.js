@@ -30,7 +30,7 @@ $(function(){
     created: function(){
         this.fetchData()
         this.$watch('submissions', function(){
-            this.fetchData()
+            //this.fetchData()
         })
       },
       methods: {
@@ -63,7 +63,7 @@ $(function(){
       created: function(){
         this.fetchData()
         this.$watch('score', function(){
-            this.fetchData()
+            //this.fetchData()
         })
       },
       methods: {
@@ -83,7 +83,7 @@ $(function(){
       created: function(){
         this.fetchData()
         this.$watch('users', function(){
-            this.fetchData()
+            //this.fetchData()
         })
       },
       methods: {
